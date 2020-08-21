@@ -7,8 +7,15 @@ function activateGallery() {
       let newImageSrc = thumbnail.dataset.largeVersion;
       let newImageAlt = thumbnail.alt
 
+      document.querySelector("#gallery-thumbs > .current").classList.remove("current");
+      thumbnail.parentNode.classList.add("current");
       mainImage.setAttribute("src", newImageSrc);
       mainImage.setAttribute("alt", newImageAlt);
+
+      let title = document.querySelector("#gallery-info > .title");
+      let description = document.querySelector("#gallery-info > .description");
+      title.innerHTML = thumbnail.dataset.title;
+      description.innerHTML = thumbnail.dataset.description;
     });
   });
 };
