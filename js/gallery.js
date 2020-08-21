@@ -1,15 +1,16 @@
-function activateGallery() {
-  let thumbnails = document.querySelectorAll("#gallery-thumbs > div > img");
+  function activateGallery() {
+    let thumbnails = document.querySelectorAll("#gallery-thumbs > div > img");
   let mainImage  = document.querySelector("#gallery-photo > img");
 
   thumbnails.forEach(function(thumbnail) {
-    thumbnail.addEventListener("click", function() {
-      let newImageSrc = thumbnail.dataset.largeVersion;
-      let newImageAlt = thumbnail.alt
+    let largeVersion = new Image();
+    largeVersion.src = thumbnail.dataset.largeVersion;
+    let newImageAlt = thumbnail.alt
 
+    thumbnail.addEventListener("click", function() {
       document.querySelector("#gallery-thumbs > .current").classList.remove("current");
       thumbnail.parentNode.classList.add("current");
-      mainImage.setAttribute("src", newImageSrc);
+      mainImage.setAttribute("src", largeVersion.src);
       mainImage.setAttribute("alt", newImageAlt);
 
       let title = document.querySelector("#gallery-info > .title");
